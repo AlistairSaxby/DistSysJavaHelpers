@@ -28,6 +28,7 @@ import java.io.File;
 import java.io.IOException;
 
 import hu.mta.sztaki.lpds.cloud.simulator.helpers.job.Job;
+import hu.mta.sztaki.lpds.cloud.simulator.helpers.trace.file.ASLogTraceReader;
 import hu.mta.sztaki.lpds.cloud.simulator.helpers.trace.file.GWFReader;
 import hu.mta.sztaki.lpds.cloud.simulator.helpers.trace.file.One2HistoryReader;
 import hu.mta.sztaki.lpds.cloud.simulator.helpers.trace.file.SWFReader;
@@ -91,6 +92,8 @@ public class FileBasedTraceProducerFactory {
 			producer = srtg;
 		} else if (fileName.endsWith(".one2")) {
 			producer = new One2HistoryReader(fileName, from, to, furtherjobs, jobType);
+		} else if (fileName.endsWith(".log")) {
+			producer = new ASLogTraceReader(fileName, from, to, furtherjobs, jobType);
 		} else {
 			return null;
 		}
